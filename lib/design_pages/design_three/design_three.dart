@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'different_items_pages/bmi_calc_page.dart';
 import 'different_items_pages/converters_page.dart';
-import 'different_items_pages/date_calc_page.dart';
+import 'different_items_pages/date_calculator_pages/date_calc_page.dart';
 import 'different_items_pages/interest_calc_page.dart';
 import 'different_items_pages/temperature_page.dart';
 import 'different_items_pages/weight_page.dart';
