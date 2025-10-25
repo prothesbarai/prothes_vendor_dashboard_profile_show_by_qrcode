@@ -53,10 +53,10 @@ flutter run
 ## 🖼️ Screenshots
 <table>
   <tr>
-    <td><img src="assets/images/img.png" width="24%"/></td>
-    <td><img src="assets/images/img_1.png" width="24%"/></td>
-    <td><img src="assets/images/img_2.png" width="24%"/></td>
-    <td><img src="assets/images/img_3.png" width="24%"/></td>
+    <td><img src="assets/images/img.png" width="200"/></td>
+    <td><img src="assets/images/img_1.png" width="200"/></td>
+    <td><img src="assets/images/img_2.png" width="200"/></td>
+    <td><img src="assets/images/img_3.png" width="200"/></td>
   </tr>
 </table>
 
