@@ -29,7 +29,7 @@ class _QRScanPageState extends State<QRScanPage> {
   }
 
 
-  void _onQRScanned(String qrData, BuildContext context) {
+  void _onQRScanned(String qrData, BuildContext context) async{
     Widget page;
     switch (qrData) {
       case "ANGKAN_UI":
@@ -44,6 +44,8 @@ class _QRScanPageState extends State<QRScanPage> {
       // add more QR codes and pages here
       default:
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Unknown QR code")),);
+        await Future.delayed(const Duration(seconds: 2)); // wait a bit
+        qrViewController?.resumeCamera(); // Clear Scanner
         return;
     }
 
