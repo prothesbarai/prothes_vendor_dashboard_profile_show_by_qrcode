@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'different_items_pages/bmi_calc_page.dart';
 import 'different_items_pages/converters_page.dart';
-import 'different_items_pages/date_calculator_pages/date_calc_page.dart';
+import 'different_items_pages/date_calculator_pages/date_calc_main_page.dart';
 import 'different_items_pages/interest_calc_page.dart';
 import 'different_items_pages/temperature_page.dart';
 import 'different_items_pages/weight_page.dart';
@@ -16,7 +16,7 @@ class DesignThree extends StatelessWidget {
       _Utility("Converters", Icons.swap_horiz, const ConvertersPage()),
       _Utility("Weight", Icons.line_weight, const WeightPage()),
       _Utility("Temperature", Icons.thermostat, const TemperaturePage()),
-      _Utility("Date Calc", Icons.calendar_today, const DateCalcPage()),
+      _Utility("Date Calc", Icons.calendar_today, const DateCalcMainPage()),
       _Utility("BMI", Icons.fitness_center, const BMICalcPage()),
       _Utility("Interest", Icons.calculate, const InterestCalcPage()),
     ];

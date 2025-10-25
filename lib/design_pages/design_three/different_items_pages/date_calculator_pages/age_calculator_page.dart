@@ -261,7 +261,7 @@ class _AgeCalculatorPageState extends State<AgeCalculatorPage> {
 
             // Summary Section
             if (dob != null) _buildSummaryCard(),
-            
+
             const SizedBox(height: 30),
           ],
         ),
@@ -269,38 +269,24 @@ class _AgeCalculatorPageState extends State<AgeCalculatorPage> {
     );
   }
 
+
+  /// >>> Build Clickable Date Row =============================================
   Widget _buildClickableDateRow(String title, DateTime? date, VoidCallback onTap) {
     return Row(
       children: [
-        Expanded(
-          flex: 2,
-          child: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600,),),
-        ),
+        Expanded(flex: 2, child: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600,),),),
         Expanded(
           flex: 3,
           child: GestureDetector(
             onTap: onTap,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.circular(8),
-              ),
+              decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300), borderRadius: BorderRadius.circular(8),),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    date == null ? "Select date" : DateFormat("MMM dd, yyyy").format(date),
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: date == null ? Colors.grey.shade600 : Colors.black,
-                    ),
-                  ),
-                  Icon(
-                    Icons.calendar_today,
-                    color: Colors.deepOrange,
-                    size: 20,
-                  ),
+                  Text(date == null ? "Select date" : DateFormat("MMM dd, yyyy").format(date), style: TextStyle(fontSize: 16, color: date == null ? Colors.grey.shade600 : Colors.black,),),
+                  Icon(Icons.calendar_today, color: Colors.deepOrange, size: 20,),
                 ],
               ),
             ),
@@ -309,7 +295,6 @@ class _AgeCalculatorPageState extends State<AgeCalculatorPage> {
       ],
     );
   }
-
 
   /// >>> Build Age Design card ================================================
   Widget _buildAgeCard() {
