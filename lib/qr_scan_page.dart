@@ -29,8 +29,9 @@ class _QRScanPageState extends State<QRScanPage> {
   }
 
 
-  void _onQRScanned(String qrData, BuildContext context) async{
+  void _onQRScanned(String qrData, BuildContext context) async {
     Widget page;
+
     switch (qrData) {
       case "ANGKAN_UI":
         page = DesignOne(qrData: qrData);
@@ -41,16 +42,18 @@ class _QRScanPageState extends State<QRScanPage> {
       case "SHREYASI_UI":
         page = DesignThree(qrData: qrData);
         break;
-      // add more QR codes and pages here
       default:
+        if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Unknown QR code")),);
         await Future.delayed(const Duration(seconds: 2)); // wait a bit
-        qrViewController?.resumeCamera(); // Clear Scanner
+        qrViewController?.resumeCamera(); // no context used here
         return;
     }
 
+    if (!context.mounted) return;
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => page),);
   }
+
 
 
 
