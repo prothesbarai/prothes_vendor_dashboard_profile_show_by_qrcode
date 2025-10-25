@@ -308,33 +308,37 @@ class _AgeCalculatorPageState extends State<AgeCalculatorPage> {
             // Header row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Age", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
-                Text("$years years", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepOrange,),),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("$months months $days days", style: const TextStyle(fontSize: 16, color: Colors.grey,),),
-                const Text("Next birthday", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox.shrink(),
-                Text(nextBirthdayDayName, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.deepOrange,),),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox.shrink(),
-                Text("$nextBirthdayMonths months $nextBirthdayDays days", style: const TextStyle(fontSize: 16, color: Colors.grey,),),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Age", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,),),
+                    Row(children: [
+                      Text("$years", style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.deepOrange,),),
+                      const SizedBox(width: 10,),
+                      Text("years", style: const TextStyle(fontSize: 16, color: Colors.grey,),),
+                    ],),
+                    SizedBox(width:100,child: Divider(color: Colors.grey[300], thickness: 1,)),
+                    Text("$months months | $days days", style: const TextStyle(fontSize: 15, color: Colors.grey,),),
+                  ],
+                ),
+
+                SizedBox(height: 150, child: VerticalDivider(color: Colors.grey[300], thickness: 1, width: 1,),),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("Next birthday", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Icon(Icons.cake,color: Colors.deepOrange,size: 30,),
+                    ),
+                    Text(nextBirthdayDayName, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepOrange,),),
+                    SizedBox(width:120,child: Divider(color: Colors.grey[300], thickness: 1,)),
+                    Text("$nextBirthdayMonths months | $nextBirthdayDays days", style: const TextStyle(fontSize: 15, color: Colors.grey,),),
+                  ],
+                ),
               ],
             ),
           ],
