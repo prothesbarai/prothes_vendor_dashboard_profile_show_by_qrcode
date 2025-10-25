@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:prothesvendordashboardprofileshowbyqrcode/design_pages/design_one.dart';
+import 'package:prothesvendordashboardprofileshowbyqrcode/design_pages/design_one/design_one.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
-import 'design_pages/design_three.dart';
-import 'design_pages/design_two.dart';
+import 'design_pages/design_three/design_three.dart';
+import 'design_pages/design_two/design_two.dart';
 
 class QRScanPage extends StatefulWidget {
   const QRScanPage({super.key});
