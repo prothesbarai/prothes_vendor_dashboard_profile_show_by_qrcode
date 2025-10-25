@@ -61,8 +61,6 @@ class _QRScanPageState extends State<QRScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
       body: QRView(
         key: qrKey,
         onQRViewCreated: _onQRViewCreated,
