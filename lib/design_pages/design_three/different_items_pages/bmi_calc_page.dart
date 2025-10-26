@@ -11,7 +11,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
 
   /// >>> Weight variables
   double weightValue = 60.0;
-  String weightUnit = 'Kilograms';
+  String weightUnit = 'Kilograms(kg)';
   TextEditingController weightController = TextEditingController();
 
   /// >>> Height variables
@@ -31,6 +31,39 @@ class _BMICalcPageState extends State<BMICalcPage> {
     weightController.text = weightValue.toStringAsFixed(0);
     heightController.text = heightValue.toStringAsFixed(0);
   }
+
+
+  /// >>> Show Weight Unit Bottom Sheet ========================================
+  void _showWeightUnitBottomSheet(){
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return SafeArea(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Select Weight Unit', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 16),
+                  ...['Kilograms(kg)', 'Pounds'].map((unit){
+                    return ListTile(
+                      title: Text(unit),
+                      trailing: weightUnit == unit ? const Icon(Icons.check, color: Colors.blue) : null,
+                      onTap: () {
+                        setState(() {weightUnit = unit;});
+                        Navigator.pop(context);
+                      },
+                    );
+                  }),
+                ],
+              ),
+            ),
+          );
+        },
+    );
+  }
+  /// <<< Show Weight Unit Bottom Sheet ========================================
 
 
   /// >>> BMI Result Category Color ============================================
@@ -57,7 +90,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: (){},
+                    onTap: _showWeightUnitBottomSheet,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(8),border: Border.all(color: Colors.grey[400]!),),
