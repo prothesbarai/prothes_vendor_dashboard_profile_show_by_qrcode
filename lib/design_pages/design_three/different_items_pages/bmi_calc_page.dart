@@ -130,11 +130,48 @@ class _BMICalcPageState extends State<BMICalcPage> {
 
 
             /// >>> BMI Result Card - Only show if calculated ==================
-            
+            _buildCard(bmiValue: 20, bmiCategory: bmiCategory, weight: 20, height: 50, weightUnit: weightUnit, heightUnit: heightUnit)
             /// <<< BMI Result Card - Only show if calculated ==================
           ],
         ),
       )
     );
   }
+
+
+  /// >>> Separate Card Design Start Here ======================================
+  Widget _buildCard({required double bmiValue, required String bmiCategory, required double weight, required double height, required String weightUnit, required String heightUnit}){
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(16), border: Border.all(color: Colors.blue[200]!),),
+      child: Column(
+        children: [
+          Text('${bmiValue.toStringAsFixed(1)} BMI', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue,),),
+          const SizedBox(height: 8),
+          Text(bmiCategory, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, /*color: _getCategoryColor(),*/),),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  const Text('Weight', style: TextStyle(fontSize: 14, color: Colors.grey),),
+                  Text(weight.toStringAsFixed(0), style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                  Text(weightUnit, style: const TextStyle(fontSize: 12, color: Colors.grey),),
+                ],
+              ),
+              Column(
+                children: [
+                  const Text('Height', style: TextStyle(fontSize: 14, color: Colors.grey),),
+                  Text(height.toStringAsFixed(0), style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                  Text(heightUnit, style: const TextStyle(fontSize: 12, color: Colors.grey),),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  /// <<< Separate Card Design End Here ========================================
 }
