@@ -146,10 +146,22 @@ class _BMICalcPageState extends State<BMICalcPage> {
       decoration: BoxDecoration(color: Colors.blue[50], borderRadius: BorderRadius.circular(16), border: Border.all(color: Colors.blue[200]!),),
       child: Column(
         children: [
-          Text('${bmiValue.toStringAsFixed(1)} BMI', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue,),),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(bmiValue.toStringAsFixed(1), style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Colors.blue,),),
+              SizedBox(width: 15,),
+              Column(
+                children: [
+                  Text('BMI', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: Colors.grey,),),
+                  Text('Normal', style: const TextStyle(fontSize: 12, color: Colors.blue,),),
+                ],
+              ),
+            ],
+          ),
           const SizedBox(height: 8),
           Text(bmiCategory, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, /*color: _getCategoryColor(),*/),),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
