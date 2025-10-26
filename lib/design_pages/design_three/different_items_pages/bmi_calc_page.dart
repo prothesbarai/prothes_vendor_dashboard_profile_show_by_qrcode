@@ -108,6 +108,14 @@ class _BMICalcPageState extends State<BMICalcPage> {
   }
   /// <<< BMI Result Category Color ============================================
 
+
+  @override
+  void dispose() {
+    weightController.dispose();
+    heightController.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
