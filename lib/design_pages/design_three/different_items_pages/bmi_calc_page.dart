@@ -66,6 +66,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
                   const SizedBox(width: 16),
                   Expanded(
                       child: TextField(
+                        controller: weightController,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter weight', labelText: 'Weight',),
                         onChanged: (value){},
@@ -77,6 +78,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
             const SizedBox(height: 20),
             /// <<< Weight Field End Here ======================================
 
+            
             /// >>> Height Input Field Start Here ==============================
             Container(
               decoration: BoxDecoration(color: Colors.grey[100],borderRadius: BorderRadius.circular(12),border: Border.all(color: Colors.grey[300]!)),
@@ -101,6 +103,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
                   const SizedBox(width: 16),
                   Expanded(
                       child: TextField(
+                        controller: heightController,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter height', labelText: 'Height',),
                         onChanged: (value){},
@@ -111,6 +114,11 @@ class _BMICalcPageState extends State<BMICalcPage> {
             ),
             const SizedBox(height: 30),
             /// <<< Height Input Field End Here ================================
+
+
+            /// <<< Calculate Button Start Here ================================
+            SizedBox(),
+            /// <<< Calculate Button End Here ==================================
           ],
         ),
       )
