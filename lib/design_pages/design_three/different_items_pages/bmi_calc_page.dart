@@ -66,6 +66,39 @@ class _BMICalcPageState extends State<BMICalcPage> {
   /// <<< Show Weight Unit Bottom Sheet ========================================
 
 
+  /// >>> Show Height Unit Bottom Sheet ========================================
+  void _showHeightUnitBottomSheet(){
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Select Height Unit', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                const SizedBox(height: 16),
+                ...['Centimeters', 'Meters', 'Feet', 'Inches'].map((unit){
+                  return ListTile(
+                    title: Text(unit),
+                    trailing: heightUnit == unit ? const Icon(Icons.check, color: Colors.blue) : null,
+                    onTap: () {
+                      setState(() {heightUnit = unit;});
+                      Navigator.pop(context);
+                    },
+                  );
+                }),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+  /// <<< Show Height Unit Bottom Sheet ========================================
+
+
   /// >>> BMI Result Category Color ============================================
   Color _getCategoryColor() {
     if (bmiCategory == 'Underweight') return Colors.blue;
@@ -127,7 +160,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: (){},
+                    onTap: _showHeightUnitBottomSheet,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(8),border: Border.all(color: Colors.grey[400]!),),
