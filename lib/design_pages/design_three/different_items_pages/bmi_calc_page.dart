@@ -51,7 +51,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
                       title: Text(unit),
                       trailing: weightUnit == unit ? const Icon(Icons.check, color: Colors.blue) : null,
                       onTap: () {
-                        setState(() {weightUnit = unit;});
+                        setState(() {weightUnit = unit; isCalculated = false;});
                         Navigator.pop(context);
                       },
                     );
@@ -84,7 +84,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
                     title: Text(unit),
                     trailing: heightUnit == unit ? const Icon(Icons.check, color: Colors.blue) : null,
                     onTap: () {
-                      setState(() {heightUnit = unit;});
+                      setState(() {heightUnit = unit;isCalculated = false;});
                       Navigator.pop(context);
                     },
                   );
@@ -115,7 +115,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
     heightController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +151,9 @@ class _BMICalcPageState extends State<BMICalcPage> {
                         controller: weightController,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter weight', labelText: 'Weight',),
-                        onChanged: (value){},
+                        onChanged: (value){
+                          setState(() {weightValue = double.tryParse(value) ?? 0.0;isCalculated = false;});
+                        },
                       )
                   ),
                 ],
@@ -188,7 +190,9 @@ class _BMICalcPageState extends State<BMICalcPage> {
                         controller: heightController,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter height', labelText: 'Height',),
-                        onChanged: (value){},
+                        onChanged: (value){
+                          setState(() {heightValue = double.tryParse(value) ?? 0.0;isCalculated = false;});
+                        },
                       )
                   ),
                 ],
@@ -212,8 +216,15 @@ class _BMICalcPageState extends State<BMICalcPage> {
 
 
             /// >>> BMI Result Card - Only show if calculated ==================
-            _buildCard(bmiValue: 20, bmiCategory: bmiCategory, weight: 20, height: 50, weightUnit: weightUnit, heightUnit: heightUnit)
+            if (isCalculated) ...[
+              _buildCard(bmiValue: 20, bmiCategory: bmiCategory, weight: 20, height: 50, weightUnit: weightUnit, heightUnit: heightUnit),
+              const SizedBox(height: 20),
+            ],
             /// <<< BMI Result Card - Only show if calculated ==================
+
+
+            /// >>> BMI Scale Information ======================================
+            /// <<< BMI Scale Information ======================================
           ],
         ),
       )
