@@ -33,6 +33,14 @@ class _BMICalcPageState extends State<BMICalcPage> {
   }
 
 
+  /// >>> BMI Result Category Color ============================================
+  Color _getCategoryColor() {
+    if (bmiCategory == 'Underweight') return Colors.blue;
+    if (bmiCategory == 'Normal') return Colors.green;
+    if (bmiCategory == 'Overweight') return Colors.orange;
+    return Colors.red;
+  }
+  /// <<< BMI Result Category Color ============================================
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +168,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
             ],
           ),
           const SizedBox(height: 8),
-          Text(bmiCategory, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, /*color: _getCategoryColor(),*/),),
+          Text(bmiCategory, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: _getCategoryColor(),),),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
