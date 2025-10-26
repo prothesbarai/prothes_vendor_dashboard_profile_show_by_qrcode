@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:prothesvendordashboardprofileshowbyqrcode/design_pages/design_three/design_three.dart';
 import 'package:prothesvendordashboardprofileshowbyqrcode/qr_scan_page.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge),
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,]),
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),),
-      home: const QRScanPage()
+      home: const DesignThree(qrData: "qrData")
     );
   }
 }
