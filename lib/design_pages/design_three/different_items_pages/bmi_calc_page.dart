@@ -113,6 +113,12 @@ class _BMICalcPageState extends State<BMICalcPage> {
   /// <<< BMI Result Category Color ============================================
 
 
+  /// >>> BMI Calculation ======================================================
+  void calculateBMI() {
+
+  }
+  /// <<< BMI Calculation ======================================================
+
   @override
   void dispose() {
     weightController.dispose();
@@ -228,6 +234,26 @@ class _BMICalcPageState extends State<BMICalcPage> {
 
 
             /// >>> BMI Scale Information ======================================
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(color: Colors.grey[50], borderRadius: BorderRadius.circular(12), border: Border.all(color: Colors.grey[300]!),),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Information', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 12),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: const [Text('Underweight'), Text('Normal'), Text('Overweight'),],),
+                  const SizedBox(height: 8),
+                  Container(
+                    height: 20,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), gradient: const LinearGradient(colors: [Colors.blue, Colors.green, Colors.orange, Colors.red,], stops: [0.0, 0.3, 0.6, 1.0],),),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: const [Text('16.0'), Text('18.5'), Text('25.0'), Text('40.0'),],),
+                ],
+              ),
+            ),
+            const SizedBox(height: 100),
             /// <<< BMI Scale Information ======================================
           ],
         ),
