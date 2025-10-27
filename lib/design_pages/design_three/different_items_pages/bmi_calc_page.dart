@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BMICalcPage extends StatefulWidget {
   const BMICalcPage({super.key});
@@ -30,6 +31,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
     super.initState();
     weightController.text = weightValue.toStringAsFixed(0);
     heightController.text = heightValue.toStringAsFixed(0);
+    calculateBMI();
   }
 
 
@@ -115,6 +117,39 @@ class _BMICalcPageState extends State<BMICalcPage> {
 
   /// >>> BMI Calculation ======================================================
   void calculateBMI() {
+    double weightInKg = weightValue;
+    double heightInM = heightValue / 100; // Convert cm to meters
+
+    // Convert weight to kg for Pounds
+    if(weightUnit == 'Pounds'){
+      weightInKg = weightValue * 0.453592;
+    }
+
+    // Convert height to other
+    if (heightUnit == 'Meters') {
+      heightInM = heightValue;
+    } else if (heightUnit == 'Feet') {
+      heightInM = heightValue * 0.3048;
+    } else if (heightUnit == 'Inches') {
+      heightInM = heightValue * 0.0254;
+    }
+
+    if (heightInM > 0) {
+      setState(() {
+        bmiResult = weightInKg / (heightInM * heightInM);
+        isCalculated = true;
+
+        if (bmiResult < 18.5) {
+          bmiCategory = 'Underweight';
+        } else if (bmiResult < 24.9) {
+          bmiCategory = 'Normal';
+        } else if (bmiResult < 30) {
+          bmiCategory = 'Overweight';
+        } else {
+          bmiCategory = 'Obese';
+        }
+      });
+    }
 
   }
   /// <<< BMI Calculation ======================================================
@@ -124,7 +159,6 @@ class _BMICalcPageState extends State<BMICalcPage> {
     weightController.dispose();
     heightController.dispose();
     super.dispose();
-    calculateBMI();
   }
 
   @override
@@ -160,6 +194,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
                   Expanded(
                       child: TextField(
                         controller: weightController,
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d{0,3}(\.\d{0,2})?$'),),],
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter weight', labelText: 'Weight',),
                         onChanged: (value){
@@ -199,6 +234,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
                   Expanded(
                       child: TextField(
                         controller: heightController,
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d{0,3}(\.\d{0,2})?$'),),],
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(border: InputBorder.none, hintText: 'Enter height', labelText: 'Height',),
                         onChanged: (value){
@@ -228,7 +264,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
 
             /// >>> BMI Result Card - Only show if calculated ==================
             if (isCalculated) ...[
-              _buildCard(bmiValue: 20, bmiCategory: bmiCategory, weight: 20, height: 50, weightUnit: weightUnit, heightUnit: heightUnit),
+              _buildCard(bmiValue: bmiResult, bmiCategory: bmiCategory, weight:  weightValue, height: heightValue, weightUnit: weightUnit, heightUnit: heightUnit),
               const SizedBox(height: 20),
             ],
             /// <<< BMI Result Card - Only show if calculated ==================
@@ -273,12 +309,12 @@ class _BMICalcPageState extends State<BMICalcPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(bmiValue.toStringAsFixed(1), style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Colors.blue,),),
+              Text(  bmiValue.toStringAsFixed(1).length > 6 ? '${bmiValue.toStringAsFixed(1).substring(0, 4)}...' : bmiValue.toStringAsFixed(1), style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Colors.blue,),),
               SizedBox(width: 15,),
               Column(
                 children: [
                   Text('BMI', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: Colors.grey,),),
-                  Text('Normal', style: const TextStyle(fontSize: 12, color: Colors.blue,),),
+                  Text(bmiCategory, style: TextStyle(fontSize: 12, color: _getCategoryColor(),),),
                 ],
               ),
             ],
