@@ -48,7 +48,9 @@ class _BMICalcPageState extends State<BMICalcPage> {
                   const SizedBox(height: 16),
                   ...['Kilograms(kg)', 'Pounds'].map((unit){
                     return ListTile(
+                      selected: true,
                       title: Text(unit),
+                      selectedColor: weightUnit == unit ? Colors.blue : null,
                       trailing: weightUnit == unit ? const Icon(Icons.check, color: Colors.blue) : null,
                       onTap: () {
                         setState(() {weightUnit = unit; isCalculated = false;});
@@ -81,6 +83,8 @@ class _BMICalcPageState extends State<BMICalcPage> {
                 const SizedBox(height: 16),
                 ...['Centimeters', 'Meters', 'Feet', 'Inches'].map((unit){
                   return ListTile(
+                    selected: true,
+                    selectedColor: heightUnit == unit ? Colors.blue : null,
                     title: Text(unit),
                     trailing: heightUnit == unit ? const Icon(Icons.check, color: Colors.blue) : null,
                     onTap: () {
