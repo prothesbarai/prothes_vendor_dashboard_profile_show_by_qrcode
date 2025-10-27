@@ -124,6 +124,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
     weightController.dispose();
     heightController.dispose();
     super.dispose();
+    calculateBMI();
   }
 
   @override
@@ -216,7 +217,7 @@ class _BMICalcPageState extends State<BMICalcPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: (){},
+                onPressed: calculateBMI,
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(vertical: 16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),),
                 child: const Text('Calculate BMI', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
               ),
