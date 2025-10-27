@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:prothesvendordashboardprofileshowbyqrcode/design_pages/design_three/design_three.dart';
 import 'package:prothesvendordashboardprofileshowbyqrcode/qr_scan_page.dart';
 
 void main() async{
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),),
-      home: const DesignThree(qrData: "qrData")
+      home: QRScanPage()
     );
   }
 }
